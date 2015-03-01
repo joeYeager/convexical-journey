@@ -1,4 +1,4 @@
-#include "timer.h"
+#include "headers/timer.h"
 
 void Timer::startTimer(){
     this->startTime = clock();

@@ -1,3 +1,6 @@
+#ifndef TESTDATA_H
+#define TESTDATA_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
@@ -5,8 +8,6 @@
 #include <fstream>
 #include <algorithm>
 #include <math.h>
-
-#define TESTDATA_H
 
 struct Coordinate
 {
@@ -40,22 +41,23 @@ class TestData {
                 bool sortByX;
                 sortBy(bool asc, bool x ) : ascend(asc), sortByX(x) {}
                 inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
-                        if(this->ascend){
-                            if(this->sortByX){
-                                return (coord1.x < coord2.x);
-                            }
-                            else{
-                                return (coord1.y < coord2.y);
-                            }
+
+                    if(this->ascend){
+                        if(this->sortByX){
+                            return (coord1.x < coord2.x);
                         }
                         else{
-                            if(this->sortByX){
-                                return (coord1.x > coord2.x);
-                            }
-                            else{
-                                return (coord1.y > coord2.y);
-                            }
+                            return (coord1.y < coord2.y);
                         }
+                    }
+                    else{
+                        if(this->sortByX){
+                            return (coord1.x > coord2.x);
+                        }
+                        else{
+                            return (coord1.y > coord2.y);
+                        }
+                    }
                 }
 
         };
@@ -63,11 +65,11 @@ class TestData {
         // Sorts the data by the x value, in ascdening order
         void sort();
 
-        // Sorts the data by the x value, in descending order 
+        // Sorts the data by the x value, in descending order
         void reverseSort();
 
     public:
-        
+
         void printPoint(int index);
         void outputPoints();
         void resizeCoords(int size);
@@ -79,3 +81,5 @@ class TestData {
         std::vector< CoordinateFloats > generateCircle(int size);
 
 };
+
+#endif

@@ -1,11 +1,12 @@
+#ifndef TIMER_H
+#define TIMER_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
 #include <time.h>
 #include <fstream>
 #include <algorithm>
-
-#define TIMER_H
 
 class Timer {
     public:
@@ -16,3 +17,5 @@ class Timer {
         clock_t startTime;
         clock_t endTime;
 };
+
+#endif

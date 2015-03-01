@@ -1,8 +1,16 @@
-#include "testdata.h"
-#include "timer.h"
+#include <iostream>
+#include <stdlib.h>
+#include <vector>
+#include <time.h>
+#include <fstream>
+#include <algorithm>
+#include <math.h>
 
-int main(){
-    
+#include "headers/testdata.h"
+#include "headers/timer.h"
+
+int main() {
+
     TestData test;
     Timer timer;
 
@@ -50,4 +58,6 @@ int main(){
     std::cout << "\ngenerateCircle: \t\t" << timer.getTime() << " ms\n\n"<< std::endl;
 
 
+
+    return 0;
 }

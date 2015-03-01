@@ -1,4 +1,4 @@
-#include "testdata.h"
+#include "headers/testdata.h"
 
 void TestData::populate(int size, int bound){
 
@@ -8,7 +8,7 @@ void TestData::populate(int size, int bound){
     // Seed the random number generator
     srand (time(NULL));
 
-    // Iterate through the vector and and create random pairs of positive and negative numbers that are within the 
+    // Iterate through the vector and and create random pairs of positive and negative numbers that are within the
     //  range (-bound, bound)
     for(int j = 0; j < size; ++j){
         short int x = ((rand() % (2*bound)+1) - bound);
@@ -31,7 +31,7 @@ void TestData::reverseSort(){
 
 void TestData::printPoint(int i){
     if( i >= 0 && i <= this->coords.capacity()){
-        std::cout << "(" << this->coords[i].x << "," << this->coords[i].y << ")" << std::endl;        
+        std::cout << "(" << this->coords[i].x << "," << this->coords[i].y << ")" << std::endl;
     }
     else{
         std::cout << "Index is out of range\n";
@@ -65,11 +65,11 @@ std::vector< Coordinate > TestData::generateRandom(int size, int bound){
 }
 
 std::vector< Coordinate > TestData::generateHomogeneous(int size, int bound){
-    
+
     this->resizeCoords(size);
     this->resizeCoordFloats(0);
 
-    // Resize the vector to the desired size 
+    // Resize the vector to the desired size
 
     // Seed the random number generator
     srand (time(NULL));
@@ -77,7 +77,7 @@ std::vector< Coordinate > TestData::generateHomogeneous(int size, int bound){
     short int x = ((rand() % (2*bound)+1) - bound);
     short int y = ((rand() % (2*bound)+1) - bound);
 
-    // Iterate through the vector and and create random pairs of positive and negative numbers that are within the 
+    // Iterate through the vector and and create random pairs of positive and negative numbers that are within the
     //  range (-bound, bound)
     for(int j = 0; j < size; ++j){
         this->coords.push_back( Coordinate(x,y) );
@@ -103,7 +103,7 @@ std::vector< CoordinateFloats >TestData::generateCircle(int size){
 
     double radius = (double)size/(double)100;
     double incrementor = ((M_PI * 2)/(double)size);
-    double x,y;
+    // double x,y;
     for(double j = 0; j < 2*M_PI; j+=incrementor){
         this->coordFloats.push_back( CoordinateFloats(0 + radius*cos(j),0 + radius*sin(j)) );
     }
