@@ -82,4 +82,4 @@ class TestData {
 
 };
 
-#endif
+#endif /* TESTDATA_H */

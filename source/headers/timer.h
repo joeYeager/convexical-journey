@@ -18,4 +18,4 @@ class Timer {
         clock_t endTime;
 };
 
-#endif
+#endif /* TIMER_H */

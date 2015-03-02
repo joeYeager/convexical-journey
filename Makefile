@@ -11,7 +11,10 @@ endif
 # # compiler flags:
 # #  -g    adds debugging information to the executable file
 # #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -Wall -stdlib=libstdc++
+CFLAGS  = -Wall
+
+# This breaks some functionality in the string class
+# -stdlib=libstdc++
 
 # the build target executable:
 TARGET = hull
@@ -21,7 +24,8 @@ MAIN = source/main.cpp
 
 # other source files
 SOURCES = source/timer.cpp    \
-          source/testdata.cpp
+          source/testdata.cpp \
+          source/runner.cpp
 
 all: $(TARGET)
 
