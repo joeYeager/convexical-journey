@@ -11,44 +11,10 @@ public class Quickhull extends Algorithm{
 		super();			//Calls it's parent class
 	}
 	
-	//This begins the algorithm process
-	protected void Begin() { 
-		CallDraw();
-		
-		FirstPoints();
-		
-		finished = true;
-		CallDraw();
-		
-	}
 	
-	protected void Draw() {		//Used with subclasses to update graphics
-		while(dbg == null) {
-			Render();						//Have the panel re render the graphics
-			try {
-			Thread.sleep(10);			//This controls the time between loop
-			} 
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		dbg.setColor(Color.green);				//Set's color of dbg
-		for(int i = 0; i < list.size(); ++i) {	//Draw all items that are not in the hull
-			Point p = list.get(i);
-			dbg.fillOval(p.x-4, p.y-4, 8, 8);
-		}
-		dbg.setColor(Color.red);				//Set the color of dbg
-		for(int i = 0; i < hull.size(); ++i) {	//Draw all points on outside of convex
-			Point p = hull.get(i);			
-			dbg.fillOval(p.x-6, p.y-6, 12, 12);
-		}
-		if(finished == true)					//When finished post it
-			dbg.drawString("The Program is Done", 20, 10);
-		PaintScreen();						//Draw the buffer to the screen
-	}
 	
 	//This will start of by finding 2 x values that are farthest from eachother
-	private void FirstPoints() {
+	protected void FirstPoints() {
 		int min = Integer.MAX_VALUE, minLoc = -1;		//Sets up the minimum value to be larger then most values and its location
 		int max = Integer.MIN_VALUE, maxLoc = -1;		//Sets up the maximum value to be smaller then most values and its location
 		ArrayList<Point> above = new ArrayList<Point>();	//Keeps track of all the points below the line
@@ -127,4 +93,3 @@ public class Quickhull extends Algorithm{
 		NextPoint(C, B, below);
 	}
 }
-

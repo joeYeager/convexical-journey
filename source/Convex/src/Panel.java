@@ -13,8 +13,8 @@ import java.lang.Runnable;;
 public abstract class Panel extends JPanel implements Runnable{
 	protected static final int PWIDTH = 700;			//Width of Panel
 	protected static final int PHEIGHT = 700;			//Height of Panel
-	protected static final int TIME_BETWEEN = 300;		//Width of Panel
-	protected static final int TOTAL_POINTS = 10;		//Width of Panel
+	protected static final int TIME_BETWEEN = 100;		//Width of Panel
+	protected static final int TOTAL_POINTS = 100;		//Width of Panel
 	
 	protected volatile boolean finished = false;		//Knows when the program is done
 	private Thread animator;						//This is used to control the animation thread

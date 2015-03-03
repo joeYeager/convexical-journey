@@ -9,6 +9,8 @@ public abstract class Algorithm extends Panel {
 	protected ArrayList<Point> list;			//Stores a list of points that the program starts with
 	protected ArrayList<Point> hull;			//Stores a list of points that are the convex hull
 	
+	protected abstract void FirstPoints();		//Used to start algorithm
+	
 	public Algorithm() {
 		super();
 		GeneratePoints();						//Generates a list of points to work with
@@ -41,6 +43,41 @@ public abstract class Algorithm extends Panel {
 		int num = ((B.x - A.x) * (A.y-C.y)) - ((B.y - A.y) * (A.x-C.x)); //This gets the distance
 		return (num>0) ? 1 : -1;			//Returns the location
 	}
+	
+	//This begins the algorithm process
+		protected void Begin() { 
+			CallDraw();
+			
+			FirstPoints();
+			
+			finished = true;
+			CallDraw();
+			
+		}
+		
+		protected void Draw() {		//Used with subclasses to update graphics
+			while(dbg == null) {
+				Render();						//Have the panel re render the graphics
+				try {
+					Thread.sleep(5);			//This controls the time between loop
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			dbg.setColor(Color.green);				//Set's color of dbg
+			for(int i = 0; i < list.size(); ++i) {	//Draw all items that are not in the hull
+				Point p = list.get(i);
+				dbg.fillOval(p.x-4, p.y-4, 8, 8);
+			}
+			dbg.setColor(Color.red);				//Set the color of dbg
+			for(int i = 0; i < hull.size(); ++i) {	//Draw all points on outside of convex
+				Point p = hull.get(i);			
+				dbg.fillOval(p.x-6, p.y-6, 12, 12);
+			}
+			if(finished == true)					//When finished post it
+				dbg.drawString("The Program is Done", 20, 10);
+			PaintScreen();						//Draw the buffer to the screen
+		}
 	
 	
 }
