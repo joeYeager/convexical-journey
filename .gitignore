@@ -3,4 +3,5 @@
 *.out
 *.exe
 *.csv
+log.txt
 hull
