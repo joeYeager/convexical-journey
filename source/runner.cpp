@@ -16,7 +16,7 @@ void Runner::start() {
 
 	curSampleSize = minSampleSize;
 	std::vector <Coordinate> coords;
-    std::vector <CoordinateFloats> coordFloats;
+    // std::vector <CoordinateFloats> coordFloats;
 	TestData data;
 
 	logfile.open("log.txt", std::ios::app);
@@ -25,8 +25,8 @@ void Runner::start() {
 
 	while (curSampleSize <= maxSampleSize) {
 
-		std::vector <Coordinate> random, homogeneous, sorted, reverse;
-    	std::vector <CoordinateFloats> circular;
+		std::vector <Coordinate> random, homogeneous, sorted, reverse, circular;
+    	// std::vector <CoordinateFloats> circular;
 
 		random = data.generateRandom(curSampleSize, bounds);
 		homogeneous = data.generateHomogeneous(curSampleSize, bounds);

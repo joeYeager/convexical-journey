@@ -11,21 +11,15 @@
 
 struct Coordinate
 {
-    short int x, y;
-    Coordinate(short int px, short int py) : x(px), y(py) {}
-};
-
-struct CoordinateFloats
-{
-    float x, y;
-    CoordinateFloats(float px, float py) : x(px), y(py) {}
+    double x, y;
+    Coordinate(double px, double py) : x(px), y(py) {}
 };
 
 class TestData {
     private:
         // A private variable to hold the pairs of points (x,y)
         std::vector< Coordinate > coords;
-        std::vector< CoordinateFloats > coordFloats;
+        // std::vector< CoordinateFloats > coordFloats;
 
         // Populates coords with randomData
         void populate(int size, int bound);
@@ -73,12 +67,11 @@ class TestData {
         void printPoint(int index);
         void outputPoints();
         void resizeCoords(int size);
-        void resizeCoordFloats(int size);
         std::vector< Coordinate > generateRandom(int size, int bound);
         std::vector< Coordinate > generateHomogeneous(int size, int bound);
         std::vector< Coordinate > generateSorted(int size, int bound);
         std::vector< Coordinate > generateReverseSorted(int size, int bound);
-        std::vector< CoordinateFloats > generateCircle(int size);
+        std::vector< Coordinate > generateCircle(int size);
 
 };
 

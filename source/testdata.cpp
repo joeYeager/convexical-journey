@@ -3,7 +3,6 @@
 void TestData::populate(int size, int bound){
 
     this->resizeCoords(size);
-    this->resizeCoordFloats(0);
 
     // Seed the random number generator
     srand (time(NULL));
@@ -11,8 +10,8 @@ void TestData::populate(int size, int bound){
     // Iterate through the vector and and create random pairs of positive and negative numbers that are within the
     //  range (-bound, bound)
     for(int j = 0; j < size; ++j){
-        short int x = ((rand() % (2*bound)+1) - bound);
-        short int y = ((rand() % (2*bound)+1) - bound);
+        double x = ((rand() % (2*bound)+1) - bound);
+        double y = ((rand() % (2*bound)+1) - bound);
 
         this->coords.push_back( Coordinate(x,y) );
     }
@@ -41,9 +40,9 @@ void TestData::printPoint(int i){
 void TestData::outputPoints(){
     std::ofstream file;
     file.open ("points.csv");
-    for ( int i = 0; i< this->coordFloats.size(); ++i ){
+    for ( int i = 0; i< this->coords.size(); ++i ){
 
-          file << this->coordFloats[i].x << "," << this->coordFloats[i].y << "\n";
+          file << this->coords[i].x << "," << this->coords[i].y << "\n";
 
     }
     file.close();
@@ -54,10 +53,10 @@ void TestData::resizeCoords(int size){
     this->coords.reserve(size);
 }
 
-void TestData::resizeCoordFloats(int size){
-    this->coordFloats.clear();
-    this->coordFloats.reserve(size);
-}
+// void TestData::resizeCoordFloats(int size){
+//     this->coordFloats.clear();
+//     this->coordFloats.reserve(size);
+// }
 
 std::vector< Coordinate > TestData::generateRandom(int size, int bound){
     this->populate(size,bound);
@@ -67,7 +66,6 @@ std::vector< Coordinate > TestData::generateRandom(int size, int bound){
 std::vector< Coordinate > TestData::generateHomogeneous(int size, int bound){
 
     this->resizeCoords(size);
-    this->resizeCoordFloats(0);
 
     // Resize the vector to the desired size
 
@@ -97,17 +95,16 @@ std::vector< Coordinate >TestData::generateReverseSorted(int size, int bound){
     return this->coords;
 }
 
-std::vector< CoordinateFloats >TestData::generateCircle(int size){
+std::vector< Coordinate >TestData::generateCircle(int size){
     this->resizeCoords(0);
-    this->resizeCoordFloats(size);
 
     double radius = (double)size/(double)100;
     double incrementor = ((M_PI * 2)/(double)size);
     // double x,y;
     for(double j = 0; j < 2*M_PI; j+=incrementor){
-        this->coordFloats.push_back( CoordinateFloats(0 + radius*cos(j),0 + radius*sin(j)) );
+        this->coords.push_back( Coordinate(0 + radius*cos(j),0 + radius*sin(j)) );
     }
 
-    return this->coordFloats;
+    return this->coords;
 }
 
