@@ -16,7 +16,6 @@ void Runner::start() {
 
 	curSampleSize = minSampleSize;
 	std::vector <Coordinate> coords;
-    // std::vector <CoordinateFloats> coordFloats;
 	TestData data;
 
 	logfile.open("log.txt", std::ios::app);
@@ -114,9 +113,12 @@ void Runner::banner() {
 
 void Runner::save(Run run) {
 
-	std::string msg = "(" + std::to_string(++runsCompleted) + " of " + std::to_string(totalRuns) + ")\t"
-        + run.algorithm + " on " + run.type + "\t"
-        + "  [ " + std::to_string(run.size) + " coords in " + std::to_string(run.time) + "ms ]\n";
+	char date[5] = "date";
+
+    std::string msg = "(" + std::to_string(++runsCompleted) + " of " + std::to_string(totalRuns) + ") "
+        + run.algorithm + " on " + std::to_string(run.size) + " " + run.type + " points.\n"
+        + "[ " + std::to_string(run.time) + "ms ] @ " + exec(date) + "\n\n";
+
 
 	if (verbose) {
 		std::cout << msg;
