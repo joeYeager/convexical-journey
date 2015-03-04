@@ -29,30 +29,28 @@ class TestData {
         // The constructor for this struct takes two arguments, these change the order and coordinate that
         // the data is sorted.  If ascending is true, it will be sorted in ascending order, otherwise descending
         // if sortByX is true, then it will be sorted by x, otherwise sorted by y;
-        struct sortBy
-            {
-                bool ascend;
-                bool sortByX;
-                sortBy(bool asc, bool x ) : ascend(asc), sortByX(x) {}
-                inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
+        struct sortBy{
+            bool ascend, sortByX;
+            sortBy(bool asc, bool x ) : ascend(asc), sortByX(x) {}
+            inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
 
-                    if(this->ascend){
-                        if(this->sortByX){
-                            return (coord1.x < coord2.x);
-                        }
-                        else{
-                            return (coord1.y < coord2.y);
-                        }
+                if(this->ascend){
+                    if(this->sortByX){
+                        return (coord1.x < coord2.x);
                     }
                     else{
-                        if(this->sortByX){
-                            return (coord1.x > coord2.x);
-                        }
-                        else{
-                            return (coord1.y > coord2.y);
-                        }
+                        return (coord1.y < coord2.y);
                     }
                 }
+                else{
+                    if(this->sortByX){
+                        return (coord1.x > coord2.x);
+                    }
+                    else{
+                        return (coord1.y > coord2.y);
+                    }
+                }
+            }
 
         };
 

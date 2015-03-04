@@ -42,7 +42,7 @@ void TestData::outputPoints(){
     file.open ("points.csv");
     for ( int i = 0; i< this->coords.size(); ++i ){
 
-          file << this->coords[i].x << "," << this->coords[i].y << "\n";
+          std::cout << this->coords[i].x << "," << this->coords[i].y << "\n";
 
     }
     file.close();
@@ -53,10 +53,6 @@ void TestData::resizeCoords(int size){
     this->coords.reserve(size);
 }
 
-// void TestData::resizeCoordFloats(int size){
-//     this->coordFloats.clear();
-//     this->coordFloats.reserve(size);
-// }
 
 std::vector< Coordinate > TestData::generateRandom(int size, int bound){
     this->populate(size,bound);
