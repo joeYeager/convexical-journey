@@ -30,7 +30,7 @@ class Kirk {
         std::vector<Coordinate> convexHull;
 
         void hullHelper(std::vector<Coordinate>);
-        std::vector<Coordinate>  bridge();
+        std::vector<Coordinate>  bridge(std::vector<Coordinate> v, Coordinate median);
         Coordinate min(std::vector<Coordinate> coords);
         Coordinate max(std::vector<Coordinate> coords);
         Coordinate median(std::vector<Coordinate> coords);
