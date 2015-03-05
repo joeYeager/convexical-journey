@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdio.h>
 
+#include "quickhull.h"
 #include "testdata.h"
 #include "timer.h"
 
@@ -34,10 +35,7 @@ class Runner {
 		int totalRuns;
 		std::ofstream logfile;
 
-
-		Run BruteForceHull(std::vector <Coordinate> data, std::string ordering);
-		// Run QuickHull(std::vector <Coordinate> data, string ordering);
-		// Run UltimatePlanar(std::vector <Coordinate> data, string ordering);
+		Run test(Algorithm alg, std::vector <Coordinate> data, std::string ordering);
 
 		void banner();
 		void save(Run run);

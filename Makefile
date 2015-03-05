@@ -25,7 +25,8 @@ MAIN = source/main.cpp
 # other source files
 SOURCES = source/timer.cpp    \
           source/testdata.cpp \
-          source/runner.cpp
+          source/runner.cpp   \
+          source/quickhull.cpp
 
 all: $(TARGET)
 

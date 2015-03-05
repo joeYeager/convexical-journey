@@ -25,7 +25,8 @@ void Runner::start() {
 	while (curSampleSize <= maxSampleSize) {
 
 		std::vector <Coordinate> random, homogeneous, sorted, reverse, circular;
-    	// std::vector <CoordinateFloats> circular;
+
+		QuickHull quickhull;
 
 		random = data.generateRandom(curSampleSize, bounds);
 		homogeneous = data.generateHomogeneous(curSampleSize, bounds);
@@ -34,25 +35,25 @@ void Runner::start() {
 		circular = data.generateCircle(curSampleSize);
 
 		// Ultimate Planar Convex Hull Algorithm
-		// save(UltimatePlanar(random));
-		// save(UltimatePlanar(homogeneous));
-		// save(UltimatePlanar(sorted));
-		// save(UltimatePlanar(reverse));
-		// save(UltimatePlanar(circular));
+		// save(test(ultimate, random, "random"));
+		// save(test(ultimate, homogeneous, "uniform"));
+		// save(test(ultimate, sorted, "sorted"));
+		// save(test(ultimate, reverse, "reverse"));
+		// save(test(ultimate, reverse, "circular"));
 
 		// Quick Hull Algorithm
-		// save(QuickHull(random));
-		// save(QuickHull(homogeneous));
-		// save(QuickHull(sorted));
-		// save(QuickHull(reverse));
-		// save(QuickHull(circular));
+		save(test(quickhull, random, "random"));
+		save(test(quickhull, homogeneous, "uniform"));
+		save(test(quickhull, sorted, "sorted"));
+		save(test(quickhull, reverse, "reverse"));
+		save(test(quickhull, reverse, "circular"));
 
 		// Brute Force Algorithm
-		save(BruteForceHull(random, "random"));
-		save(BruteForceHull(homogeneous, "uniform"));
-		save(BruteForceHull(sorted, "sorted"));
-		save(BruteForceHull(reverse, "reverse"));
-		// save(BruteForceHull(circular, "circular"));
+		// save(test(bruteforce, random, "random"));
+		// save(test(bruteforce, homogeneous, "uniform"));
+		// save(test(bruteforce, sorted, "sorted"));
+		// save(test(bruteforce, reverse, "reverse"));
+		// save(test(bruteforce, reverse, "circular"));
 
 		if (curSampleSize == maxSampleSize) {
 			curSampleSize += 1; // push sample size over the limit and exit
@@ -68,32 +69,22 @@ void Runner::start() {
 	logfile.close();
 }
 
-Run Runner::BruteForceHull(std::vector <Coordinate> data, std::string ordering) {
+Run Runner::test(Algorithm alg, std::vector <Coordinate> data, std::string ordering) {
 
 	Run run;
 	Timer timer;
 
 	timer.startTimer();
-
-	// TODO - implement brute hull algorithm
-
+	// alg.sort(data);
 	timer.stopTimer();
 
 	run.time = timer.getTime();
 	run.size = curSampleSize;
 	run.type = ordering;
-	run.algorithm = "bruteforce";
+	run.algorithm = alg.name;
 
 	return run;
 }
-
-// Run Runner::BruteForceHull(vector <Coordinate> data) {
-// 	//
-// }
-
-// Run Runner::BruteForceHull(vector <Coordinate> data) {
-// 	//
-// }
 
 void Runner::banner() {
 
@@ -120,9 +111,7 @@ void Runner::save(Run run) {
         + "[ " + std::to_string(run.time) + "ms ] @ " + exec(date) + "\n\n";
 
 
-	if (verbose) {
-		std::cout << msg;
-	}
+	if (verbose) std::cout << msg;
 
 	logfile << msg;
 
