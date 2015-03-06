@@ -75,7 +75,7 @@ Run Runner::test(Algorithm alg, std::vector <Coordinate> data, std::string order
 	Timer timer;
 
 	timer.startTimer();
-	// alg.sort(data);
+	alg.hull(data);
 	timer.stopTimer();
 
 	run.time = timer.getTime();

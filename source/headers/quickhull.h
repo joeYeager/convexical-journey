@@ -4,6 +4,7 @@
 #include "algorithm.h"
 
 class QuickHull : public Algorithm {
+
 	public:
 		QuickHull();
 		void hull(std::vector<Coordinate> &points);

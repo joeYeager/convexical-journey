@@ -20,13 +20,10 @@ CFLAGS  = -Wall
 TARGET = hull
 
 # main source file
-MAIN = source/main.cpp
+MAIN = main.cpp
 
 # other source files
-SOURCES = source/timer.cpp    \
-          source/testdata.cpp \
-          source/runner.cpp   \
-          source/quickhull.cpp
+SOURCES = source/*.cpp
 
 all: $(TARGET)
 

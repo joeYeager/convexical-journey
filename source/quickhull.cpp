@@ -6,6 +6,5 @@ QuickHull::QuickHull() {
 
 void QuickHull::hull(std::vector<Coordinate> &points) {
 
-
 	//
 }
