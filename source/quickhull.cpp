@@ -4,7 +4,7 @@ QuickHull::QuickHull() {
 	name = "Quick Hull";
 }
 
-void QuickHull::sort(std::vector<Coordinate> &points) {
+void QuickHull::hull(std::vector<Coordinate> &points) {
 
 
 	//

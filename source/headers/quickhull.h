@@ -6,7 +6,7 @@
 class QuickHull : public Algorithm {
 	public:
 		QuickHull();
-		void sort(std::vector<Coordinate> &points);
+		void hull(std::vector<Coordinate> &points);
 		void first();
 		void next();
 };
