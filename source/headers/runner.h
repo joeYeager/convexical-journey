@@ -35,7 +35,7 @@ class Runner {
 		int totalRuns;
 		std::ofstream logfile;
 
-		Run test(Algorithm alg, std::vector <Coordinate> data, std::string ordering);
+		Run test(Algorithm & alg, std::vector <Coordinate> data, std::string ordering);
 
 		void banner();
 		void save(Run run);

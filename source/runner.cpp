@@ -69,7 +69,7 @@ void Runner::start() {
 	logfile.close();
 }
 
-Run Runner::test(Algorithm alg, std::vector <Coordinate> data, std::string ordering) {
+Run Runner::test(Algorithm & alg, std::vector <Coordinate> data, std::string ordering) {
 
 	Run run;
 	Timer timer;
