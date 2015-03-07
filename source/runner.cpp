@@ -27,7 +27,7 @@ void Runner::start() {
 		std::vector <Coordinate> random, homogeneous, sorted, reverse, circular;
 
 		QuickHull quickhull;
-
+		Jarvis jarvis;
 		random = data.generateRandom(curSampleSize, bounds);
 		homogeneous = data.generateHomogeneous(curSampleSize, bounds);
 		sorted = data.generateSorted(curSampleSize, bounds);
@@ -46,7 +46,13 @@ void Runner::start() {
 		save(test(quickhull, homogeneous, "uniform"));
 		save(test(quickhull, sorted, "sorted"));
 		save(test(quickhull, reverse, "reverse"));
-		save(test(quickhull, reverse, "circular"));
+		save(test(quickhull, circular, "circular"));
+
+		save(test(jarvis, random, "random"));
+		save(test(jarvis, homogeneous, "uniform"));
+		save(test(jarvis, sorted, "sorted"));
+		save(test(jarvis, reverse, "reverse"));
+		save(test(jarvis, circular, "circular"));
 
 		// Brute Force Algorithm
 		// save(test(bruteforce, random, "random"));

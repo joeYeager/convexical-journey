@@ -40,3 +40,7 @@ bool Algorithm::isAbove(Coordinate a, Coordinate b, Coordinate c) {
 	int above = distance(a, b, c);
 	return (above < 0 ? false : true);
 }
+
+double Algorithm::orientation(Coordinate p, Coordinate q, Coordinate r){
+    return (q.x - p.x)*(r.y - p.y) - (q.y - p.y)*(r.x - p.x);
+}

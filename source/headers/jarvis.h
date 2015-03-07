@@ -10,10 +10,30 @@
 
 class Jarvis: public Algorithm {
     public:
-        std::vector<Coordinate> hull(std::vector<Coordinate> v);
-
+        void hull(std::vector<Coordinate> & v);
+        std::vector<Coordinate> getHull();
     private:
+        
+        struct sortBy{
+            bool ascend;
+            sortBy(bool asc) : ascend(asc) {}
+            inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
+
+                if(ascend){
+                    return (coord1.x < coord2.x);
+                }
+                else{
+                        return (coord1.x > coord2.x);
+                }
+            }
+
+        };
+
         std::vector<Coordinate> convexHull;
+
+        void clear();
+        double dist(Coordinate p, Coordinate q);
+
 };
 
-#endif /* Jarvis_H */
+#endif /* JARVIS_H */

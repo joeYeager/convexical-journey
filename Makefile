@@ -11,7 +11,7 @@ endif
 # # compiler flags:
 # #  -g    adds debugging information to the executable file
 # #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -Wall
+CFLAGS  = -Wall -std=c++11
 
 # This breaks some functionality in the string class
 # -stdlib=libstdc++

@@ -53,6 +53,11 @@ class TestData {
             }
 
         };
+        struct unique{
+            inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
+                return (coord1.y == coord2.y && coord1.x == coord2.x);
+            }
+        };
 
         // Sorts the data by the x value, in ascdening order
         void sort();

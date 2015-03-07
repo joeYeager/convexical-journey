@@ -7,6 +7,8 @@
 #include <stdio.h>
 
 #include "quickhull.h"
+#include "jarvis.h"
+#include "graham.h"
 #include "testdata.h"
 #include "timer.h"
 

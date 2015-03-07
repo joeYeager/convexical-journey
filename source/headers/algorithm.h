@@ -14,6 +14,7 @@ class Algorithm {
 		Coordinate leftMostCoordinate(std::vector<Coordinate> coords);
 		int distance(Coordinate a, Coordinate b, Coordinate c);
 		bool isAbove(Coordinate a, Coordinate b, Coordinate c);
+        double orientation(Coordinate a, Coordinate b, Coordinate c);
 };
 
 #endif /* ALGORITHM_H */
