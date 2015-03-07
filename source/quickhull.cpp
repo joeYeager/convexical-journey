@@ -7,10 +7,11 @@ QuickHull::QuickHull() {
 void QuickHull::hull(std::vector<Coordinate> &v) {
     int l = 0;
     int r = 0;
-    int n = v.size();
+    unsigned int n = v.size();
 
 
-    for(int i = 1; i < n; ++i){
+//<<<<<<< Updated upstream
+    for(unsigned int i = 1; i < n; ++i){
         if(v[i].x < v[l].x){
                 l = i;
         }
@@ -43,7 +44,7 @@ void QuickHull::hull(std::vector<Coordinate> &v) {
     std::vector<Coordinate> above;
     std::vector<Coordinate> below;
 
-    for(int i = 0; i < v.size(); ++i) {
+    for(unsigned int i = 0; i < v.size(); ++i) {
         if(v[i].x != -123456789){
             if(location(A, B, v[i]) == -1){
                 above.push_back(v[i]);
@@ -67,7 +68,7 @@ void QuickHull::findHull(std::vector<Coordinate> &sk, Coordinate P, Coordinate Q
 
         double max = 0;
         int loc = 0;
-        for(int i = 0; i < sk.size(); ++i){
+        for(unsigned int i = 0; i < sk.size(); ++i){
             if( distance( P, Q, sk[i] ) > max){
                 max = distance( P, Q, sk[i] );
                 loc = i;
@@ -78,7 +79,7 @@ void QuickHull::findHull(std::vector<Coordinate> &sk, Coordinate P, Coordinate Q
         sk.erase(sk.begin()+loc);
         std::vector<Coordinate> leftCQ, leftPC;
        
-        for (int i = 0; i < sk.size(); ++i) {
+        for (unsigned int i = 0; i < sk.size(); ++i) {
             if(sk[i].x != -123456789){
                 if (location(C,Q,sk[i])==1) {
                   leftCQ.push_back(sk[i]);
@@ -114,3 +115,5 @@ void QuickHull::clear(){
     convexHull.clear();
     convexHull.reserve(0);
 }
+	//
+//>>>>>>> Stashed changes

@@ -3,7 +3,7 @@
 void Jarvis::hull(std::vector<Coordinate> & v){
 
     if(v.size() <= 3){
-        for(int i = 0; i < v.size(); ++i){
+        for(unsigned int i = 0; i < v.size(); ++i){
             convexHull.push_back(v[i]);
         }
     }    

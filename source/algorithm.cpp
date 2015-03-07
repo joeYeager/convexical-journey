@@ -9,7 +9,7 @@ Coordinate Algorithm::leftMostCoordinate(std::vector<Coordinate> coords) {
 	int min = coords[0].x;
 	int minIndex = 0;
 
-	for (int i = 0; i < coords.size(); ++i) {
+	for (unsigned int i = 0; i < coords.size(); ++i) {
 		if (coords[i].x < min) {
 			minIndex = i;
 		}

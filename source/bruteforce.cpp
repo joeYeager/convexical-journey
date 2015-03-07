@@ -7,7 +7,7 @@ BruteForce::BruteForce() {
 //Starts off the algorithm and returns a
 void BruteForce::hull(std::vector<Coordinate> &points) {
 	std::vector<Coordinate> hull;
-	for(int i = 0; i < points.size(); ++i) {			//Move through the vector
+	for(unsigned int i = 0; i < points.size(); ++i) {			//Move through the vector
 		Coordinate pointA = points[i];
 		if(findPoint(points, pointA) == 1)
 			hull.push_back(pointA);	
@@ -18,13 +18,13 @@ void BruteForce::hull(std::vector<Coordinate> &points) {
 int BruteForce::findPoint(std::vector<Coordinate> & points, Coordinate & pointA) {
 	bool state;
 	int changes,loc;
-	for(int i = 0; i < points.size(); ++i) {
+	for(unsigned int i = 0; i < points.size(); ++i) {
 		Coordinate pointB = points[i];
 		if(!compare(pointA, pointB)) 
 		{
 			state = false;
 			changes = 0;
-			for(int e = 0; e < points.size(); ++e) {
+			for(unsigned int e = 0; e < points.size(); ++e) {
 				Coordinate pointC = points[e];
 				if(!compare(pointC, pointA) && !compare(pointC, pointB)) {
 					loc = isAbove(pointA, pointB, pointC);

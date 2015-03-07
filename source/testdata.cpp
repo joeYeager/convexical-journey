@@ -1,6 +1,6 @@
 #include "headers/testdata.h"
 
-void TestData::populate(int size, int bound){
+void TestData::populate(unsigned int size, int bound){
     if(coords.size() != size){
 
         // Seed the random number generator
@@ -44,7 +44,7 @@ void TestData::printPoint(int i){
 void TestData::outputPoints(){
     std::ofstream file;
     file.open ("points.csv");
-    for ( int i = 0; i< coords.size(); ++i ){
+    for ( unsigned int i = 0; i< coords.size(); ++i ){
 
           std::cout << coords[i].x << "," << coords[i].y << "\n";
 
