@@ -60,30 +60,12 @@ void TestData::resizeCoords(int size){
 
 std::vector< Coordinate > TestData::generateRandom(int size, int bound){
     resizeCoords(size);
-    std::random_shuffle(coords.begin(),coords.end());
     populate(size,bound);
+    shuffleRand myrand;
+    std::random_shuffle(coords.begin(),coords.end(),myrand);
     return coords;
 }
 
-std::vector< Coordinate > TestData::generateHomogeneous(int size, int bound){
-
-    resizeCoords(size);
-
-    // Resize the vector to the desired size
-
-    // Seed the random number generator
-    srand (time(NULL));
-
-    short int x = ((rand() % (2*bound)+1) - bound);
-    short int y = ((rand() % (2*bound)+1) - bound);
-
-    // Iterate through the vector and and create random pairs of positive and negative numbers that are within the
-    //  range (-bound, bound)
-    for(int j = 0; j < size; ++j){
-        coords.push_back( Coordinate(x,y) );
-    }
-    return coords;
-}
 
 std::vector< Coordinate > TestData::generateSorted(int size, int bound){
     populate(size,bound);

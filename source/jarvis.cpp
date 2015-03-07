@@ -41,15 +41,10 @@ void Jarvis::hull(std::vector<Coordinate> & v){
 
 }
 
-void Jarvis::clear(){
-    convexHull.clear();
-    convexHull.reserve(0);
-}
-
 std::vector<Coordinate> Jarvis::getHull(){
     sortBy compare(true);
     std::vector<Coordinate> v = convexHull;
-    std::sort(v.begin(), v.begin(),compare);
+    std::sort(v.begin(), v.end(),compare);
     clear();
     return v;
 }
@@ -57,7 +52,10 @@ std::vector<Coordinate> Jarvis::getHull(){
 double Jarvis::dist(Coordinate p, Coordinate q){
     return (q.x - p.x) * (q.x - p.x) + (q.y - p.y) * (q.y - p.y);
 }
-
+void Jarvis::clear(){
+    convexHull.clear();
+    convexHull.reserve(0);
+}
 
 
 

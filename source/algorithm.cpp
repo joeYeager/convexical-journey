@@ -22,9 +22,8 @@ Coordinate Algorithm::leftMostCoordinate(std::vector<Coordinate> coords) {
  * Form a line using Coordinates "a" and "b", then find the distance of the
  * coordinate "c" from the line "ab".
 */
-int Algorithm::distance(Coordinate a, Coordinate b, Coordinate c) {
-
-	int num = (((b.x - a.x) * (a.y - c.y)) - ((b.y - a.y) * (a.x - c.x)));
+double Algorithm::distance(Coordinate a, Coordinate b, Coordinate c) {
+	double num = (((b.x - a.x) * (a.y - c.y)) - ((b.y - a.y) * (a.x - c.x)));
 	return (num < 0 ? -num : num);
 }
 
@@ -43,4 +42,9 @@ bool Algorithm::isAbove(Coordinate a, Coordinate b, Coordinate c) {
 
 double Algorithm::orientation(Coordinate p, Coordinate q, Coordinate r){
     return (q.x - p.x)*(r.y - p.y) - (q.y - p.y)*(r.x - p.x);
+}
+
+void Algorithm::clear(){
+    convexHull.clear();
+    convexHull.reserve(0);
 }

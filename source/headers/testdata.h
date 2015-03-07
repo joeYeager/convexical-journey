@@ -12,6 +12,7 @@
 struct Coordinate
 {
     double x, y;
+    Coordinate() : x(0), y(0) {}
     Coordinate(double px, double py) : x(px), y(py) {}
 };
 
@@ -53,6 +54,11 @@ class TestData {
             }
 
         };
+        struct shuffleRand{
+            inline bool operator() (int i){
+                return std::rand()%i;
+            }
+        };
         struct unique{
             inline bool operator() (const Coordinate& coord1, const Coordinate& coord2){
                 return (coord1.y == coord2.y && coord1.x == coord2.x);
@@ -71,7 +77,6 @@ class TestData {
         void outputPoints();
         void resizeCoords(int size);
         std::vector< Coordinate > generateRandom(int size, int bound);
-        std::vector< Coordinate > generateHomogeneous(int size, int bound);
         std::vector< Coordinate > generateSorted(int size, int bound);
         std::vector< Coordinate > generateReverseSorted(int size, int bound);
         std::vector< Coordinate > generateCircle(int size);

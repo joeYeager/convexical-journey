@@ -29,34 +29,24 @@ void Runner::start() {
 		QuickHull quickhull;
 		Jarvis jarvis;
 		random = data.generateRandom(curSampleSize, bounds);
-		homogeneous = data.generateHomogeneous(curSampleSize, bounds);
 		sorted = data.generateSorted(curSampleSize, bounds);
 		reverse = data.generateReverseSorted(curSampleSize, bounds);
 		circular = data.generateCircle(curSampleSize);
 
-		// Ultimate Planar Convex Hull Algorithm
-		// save(test(ultimate, random, "random"));
-		// save(test(ultimate, homogeneous, "uniform"));
-		// save(test(ultimate, sorted, "sorted"));
-		// save(test(ultimate, reverse, "reverse"));
-		// save(test(ultimate, reverse, "circular"));
-
 		// Quick Hull Algorithm
 		save(test(quickhull, random, "random"));
-		save(test(quickhull, homogeneous, "uniform"));
 		save(test(quickhull, sorted, "sorted"));
 		save(test(quickhull, reverse, "reverse"));
 		save(test(quickhull, circular, "circular"));
 
+		// Jarvis March Algorithm
 		save(test(jarvis, random, "random"));
-		save(test(jarvis, homogeneous, "uniform"));
 		save(test(jarvis, sorted, "sorted"));
 		save(test(jarvis, reverse, "reverse"));
 		save(test(jarvis, circular, "circular"));
 
 		// Brute Force Algorithm
 		// save(test(bruteforce, random, "random"));
-		// save(test(bruteforce, homogeneous, "uniform"));
 		// save(test(bruteforce, sorted, "sorted"));
 		// save(test(bruteforce, reverse, "reverse"));
 		// save(test(bruteforce, reverse, "circular"));

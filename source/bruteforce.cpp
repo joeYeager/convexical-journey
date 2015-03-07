@@ -7,7 +7,7 @@ BruteForce::BruteForce() {
 //Starts off the algorithm and returns a
 void BruteForce::hull(std::vector<Coordinate> &points) {
 	std::vector<Coordinate> hull;
-	for(int i = 0; i < points.size(); ++i) {			//Move through the list
+	for(int i = 0; i < points.size(); ++i) {			//Move through the vector
 		Coordinate pointA = points[i];
 		if(findPoint(points, pointA) == 1)
 			hull.push_back(pointA);	
@@ -16,16 +16,18 @@ void BruteForce::hull(std::vector<Coordinate> &points) {
 
 //Will compare all points to the point sent in
 int BruteForce::findPoint(std::vector<Coordinate> & points, Coordinate & pointA) {
+	bool state;
+	int changes,loc;
 	for(int i = 0; i < points.size(); ++i) {
 		Coordinate pointB = points[i];
 		if(!compare(pointA, pointB)) 
 		{
-			bool state = false;
-			int changes = 0;
+			state = false;
+			changes = 0;
 			for(int e = 0; e < points.size(); ++e) {
 				Coordinate pointC = points[e];
 				if(!compare(pointC, pointA) && !compare(pointC, pointB)) {
-					int loc = isAbove(pointA, pointB, pointC);
+					loc = isAbove(pointA, pointB, pointC);
 					if(state != loc) {
 						state = loc;
 						changes += 1;
@@ -42,8 +44,8 @@ int BruteForce::findPoint(std::vector<Coordinate> & points, Coordinate & pointA)
 bool BruteForce::compare(Coordinate & pointA, Coordinate & pointB) {
 	if(pointA.x == pointB.x &&
 		pointA.y == pointB.y)
-		return 1;
-	return 0;
+		return true;
+	return false;
 }
 
 
