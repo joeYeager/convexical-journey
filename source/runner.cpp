@@ -48,13 +48,17 @@ void Runner::start() {
 			save(test(jarvis, random, "random"));
 			save(test(jarvis, sorted, "sorted"));
 			save(test(jarvis, reverse, "reverse"));
-			save(test(jarvis, circular, "circular"));
+			if (curSampleSize <= 100000) { // takes too long after 100k points
+				save(test(jarvis, circular, "circular"));
+			}
 
 			// Brute Force Algorithm
-			save(test(bruteforce, random, "random"));
-			save(test(bruteforce, sorted, "sorted"));
-			save(test(bruteforce, reverse, "reverse"));
-			save(test(bruteforce, reverse, "circular"));
+			if (curSampleSize <= 100000) { // takes too long after 100k points
+				save(test(bruteforce, random, "random"));
+				save(test(bruteforce, sorted, "sorted"));
+				save(test(bruteforce, reverse, "reverse"));
+				save(test(bruteforce, reverse, "circular"));
+			}
 		}
 
 		curSampleSize = increaseSampleSize(curSampleSize);
