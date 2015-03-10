@@ -8,7 +8,7 @@ void Timer::stopTimer(){
     this->endTime = clock();
 }
 
-int Timer::getTime(){
+float Timer::getTime(){
     clock_t total =  (float)(this->endTime - this->startTime);
-    return (int) (( (float)total / CLOCKS_PER_SEC) * 1000);
+    return (float) (( (float)total / (float)CLOCKS_PER_SEC) * 1000.00);
 }

@@ -1,6 +1,7 @@
 #include "headers/testdata.h"
 
 void TestData::populate(int size, int bound){
+    std::cout << "Generating\n";
     if(coords.size() != size){
 
         // Seed the random number generator

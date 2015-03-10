@@ -12,7 +12,7 @@ class Timer {
     public:
         void startTimer();
         void stopTimer();
-        int getTime();
+        float getTime();
     private:
         clock_t startTime;
         clock_t endTime;
