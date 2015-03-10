@@ -1,6 +1,6 @@
 #include "headers/testdata.h"
 
-void TestData::populate(unsigned int size, int bound){
+void TestData::populate(int size, int bound){
     if(coords.size() != size){
 
         // Seed the random number generator
