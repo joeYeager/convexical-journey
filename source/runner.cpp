@@ -3,116 +3,125 @@
 Runner::Runner(int min, int max, bool stdlog) {
 
 	bounds = 10000;
-	interval = 500;
+	multiplier = 1.25;  // 125% or 25% increase
 	runsCompleted = 0;
 	verbose = stdlog;
 	curSampleSize = min;
 	minSampleSize = min;
 	maxSampleSize = max;
-	totalRuns = ceil(maxSampleSize/interval) * 5; // TODO - this should be "* 6" once circular is fixed
 }
 
 void Runner::start() {
+
+	char date[5] = "date";
 
 	curSampleSize = minSampleSize;
 	std::vector <Coordinate> coords;
 	TestData data;
 
-	logfile.open("log.txt", std::ios::app);
+	BruteForce bruteforce;
+	QuickHull quickhull;
+	Jarvis jarvis;
 
-    banner();
+	std::cout << "\n==========================================\n";
+	std::cout << "\n           Convex Hull Analyzer           \n";
+	std::cout << "\n====== "  <<   exec(date)   <<  " ======\n\n";
 
 	while (curSampleSize <= maxSampleSize) {
 
 		std::vector <Coordinate> random, homogeneous, sorted, reverse, circular;
 
-		QuickHull quickhull;
-		Jarvis jarvis;
-		random = data.generateRandom(curSampleSize, bounds);
-		sorted = data.generateSorted(curSampleSize, bounds);
-		reverse = data.generateReverseSorted(curSampleSize, bounds);
-		circular = data.generateCircle(curSampleSize);
+		for (int i = 0; i < 10; ++i) {
 
-		// Quick Hull Algorithm
-		save(test(quickhull, random, "random"));
-		save(test(quickhull, sorted, "sorted"));
-		save(test(quickhull, reverse, "reverse"));
-		save(test(quickhull, circular, "circular"));
+			random = data.generateRandom(curSampleSize, bounds);
+			sorted = data.generateSorted(curSampleSize, bounds);
+			reverse = data.generateReverseSorted(curSampleSize, bounds);
+			circular = data.generateCircle(curSampleSize);
 
-		// Jarvis March Algorithm
-		save(test(jarvis, random, "random"));
-		save(test(jarvis, sorted, "sorted"));
-		save(test(jarvis, reverse, "reverse"));
-		save(test(jarvis, circular, "circular"));
+			// Quick Hull Algorithm
+			save(test(quickhull, random, "random"));
+			save(test(quickhull, sorted, "sorted"));
+			save(test(quickhull, reverse, "reverse"));
+			save(test(quickhull, circular, "circular"));
 
-		// Brute Force Algorithm
-		// save(test(bruteforce, random, "random"));
-		// save(test(bruteforce, sorted, "sorted"));
-		// save(test(bruteforce, reverse, "reverse"));
-		// save(test(bruteforce, reverse, "circular"));
+			// Jarvis March Algorithm
+			save(test(jarvis, random, "random"));
+			save(test(jarvis, sorted, "sorted"));
+			save(test(jarvis, reverse, "reverse"));
+			save(test(jarvis, circular, "circular"));
 
-		if (curSampleSize == maxSampleSize) {
-			curSampleSize += 1; // push sample size over the limit and exit
+			// Brute Force Algorithm
+			save(test(bruteforce, random, "random"));
+			save(test(bruteforce, sorted, "sorted"));
+			save(test(bruteforce, reverse, "reverse"));
+			save(test(bruteforce, reverse, "circular"));
 		}
-		else if (curSampleSize + interval > maxSampleSize) {
-			curSampleSize = maxSampleSize; // do one more run at max sample size
+
+		curSampleSize = increaseSampleSize(curSampleSize);
+	}
+}
+
+int Runner::increaseSampleSize(int current) {
+
+	int next = 0;
+
+	if (current == maxSampleSize) {
+		next = maxSampleSize + 1; // push sample size over the limit
+	}
+	else {
+
+		if (current >= 100000) {
+			next = current + 100000;
 		}
 		else {
-			curSampleSize += interval; // increase sample size
+			next = current * 2;
+		}
+
+		if (next > maxSampleSize) {
+			next = maxSampleSize; // do one more run at max sample size
 		}
 	}
 
-	logfile.close();
+	return next;
 }
 
 Run Runner::test(Algorithm & alg, std::vector <Coordinate> data, std::string ordering) {
 
 	Run run;
 	Timer timer;
+	float delta;
 
 	timer.startTimer();
 	alg.hull(data);
 	timer.stopTimer();
 
-	run.time = timer.getTime();
+	delta = timer.getTime();
+
+	run.algorithm = alg.name;
 	run.size = curSampleSize;
 	run.type = ordering;
-	run.algorithm = alg.name;
+	run.log = alg.log;
+	run.time = delta;
 
 	return run;
-}
-
-void Runner::banner() {
-
-	char date[5] = "date";
-
-	if (verbose == true) {
-
-		std::cout << "\n==========================================\n";
-		std::cout << "\n           Convex Hull Analyzer           \n";
-		std::cout << "\n====== "  <<   exec(date)   <<  " ======\n\n";
-	}
-
-	logfile   << "\n==========================================\n";
-	logfile   << "\n           Convex Hull Analyzer           \n";
-	logfile   << "\n====== "  <<   exec(date)   <<  " ======\n\n";
 }
 
 void Runner::save(Run run) {
 
 	char date[5] = "date";
+	logfile.open("records/" + run.log, std::ios::app);
 
-    std::string msg = "(" + std::to_string(++runsCompleted) + " of " + std::to_string(totalRuns) + ") "
-        + run.algorithm + " on " + std::to_string(run.size) + " " + run.type + " points.\n"
-        + "[ " + std::to_string(run.time) + "ms ] @ " + exec(date) + "\n\n";
+	++runsCompleted;
 
+    logfile << run.size << "," << run.time << "," << run.type << "\n";
 
-	if (verbose) std::cout << msg;
+	if (verbose) {
+		std::cout << "( " + std::to_string(runsCompleted) + " ) "
+        	+ run.algorithm + " on " + std::to_string(run.size) + " " + run.type + " points.\n"
+        	+ "[ " + std::to_string(run.time) + "ms ] @ " + exec(date) + "\n\n";
+	}
 
-	logfile << msg;
-
-	// Save to database
-	// TODO
+	logfile.close();
 }
 
 std::string Runner::exec(char * cmd) {

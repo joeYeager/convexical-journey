@@ -1,12 +1,17 @@
 #include "headers/jarvis.h"
 
+Jarvis::Jarvis() {
+    name = "Jarvis";
+    log = "jarvis.csv";
+}
+
 void Jarvis::hull(std::vector<Coordinate> & v){
 
     if(v.size() <= 3){
         for(unsigned int i = 0; i < v.size(); ++i){
             convexHull.push_back(v[i]);
         }
-    }    
+    }
     else{
         int l = 0;
         int n = v.size();
@@ -37,7 +42,7 @@ void Jarvis::hull(std::vector<Coordinate> & v){
             p = q;
 
         } while(p != l);
-    } 
+    }
 
 }
 

@@ -7,7 +7,8 @@
 class Algorithm {
 
 	public:
-		std::string name;
+		std::string log;
+        std::string name;
 		virtual void hull(std::vector<Coordinate> &points) = 0;
 
 	protected:

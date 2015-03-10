@@ -2,6 +2,7 @@
 
 BruteForce::BruteForce() {
 	name = "Brute Force";
+	log = "bruteforce.csv";
 }
 
 //Starts off the algorithm and returns a
@@ -10,7 +11,7 @@ void BruteForce::hull(std::vector<Coordinate> &points) {
 	for(unsigned int i = 0; i < points.size(); ++i) {			//Move through the vector
 		Coordinate pointA = points[i];
 		if(findPoint(points, pointA) == 1)
-			hull.push_back(pointA);	
+			hull.push_back(pointA);
 	}
 }
 
@@ -20,7 +21,7 @@ int BruteForce::findPoint(std::vector<Coordinate> & points, Coordinate & pointA)
 	int changes,loc;
 	for(unsigned int i = 0; i < points.size(); ++i) {
 		Coordinate pointB = points[i];
-		if(!compare(pointA, pointB)) 
+		if(!compare(pointA, pointB))
 		{
 			state = false;
 			changes = 0;

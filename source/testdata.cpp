@@ -1,7 +1,7 @@
 #include "headers/testdata.h"
 
 void TestData::populate(int size, int bound){
-    std::cout << "Generating\n";
+
     if(coords.size() != size){
 
         // Seed the random number generator
@@ -17,10 +17,10 @@ void TestData::populate(int size, int bound){
         }
         unique u;
         sort();
-        coords.erase(std::unique(coords.begin(),coords.end(),u), coords.end() );
+        coords.erase(std::unique(coords.begin(),coords.end(),u), coords.end());
         populate(size,bound);
     }
-    
+
 }
 
 void TestData::sort(){
@@ -81,6 +81,7 @@ std::vector< Coordinate >TestData::generateReverseSorted(int size, int bound){
 }
 
 std::vector< Coordinate >TestData::generateCircle(int size){
+
     resizeCoords(0);
 
     double radius = (double)size/(double)100;

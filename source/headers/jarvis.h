@@ -10,10 +10,11 @@
 
 class Jarvis: public Algorithm {
     public:
+    	Jarvis();
         void hull(std::vector<Coordinate> & v);
         std::vector<Coordinate> getHull();
     private:
-        
+
         std::vector<Coordinate> convexHull;
 
         double dist(Coordinate p, Coordinate q);

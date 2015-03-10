@@ -15,7 +15,7 @@ int main(int argc, char * argv[]) {
         return 1;
     }
 
-    Runner runner(1, 2000, verbose);
+    Runner runner(1000, 2000, verbose);
     runner.start();
 
     return 0;

@@ -13,8 +13,9 @@
 #include "timer.h"
 
 struct Run {
-	int time;
 	int size;
+	float time;
+	std::string log;
 	std::string type;
 	std::string algorithm;
 };
@@ -32,11 +33,11 @@ class Runner {
 		int minSampleSize;
 		int maxSampleSize;
 		int bounds;
-		int interval;
 		int runsCompleted;
-		int totalRuns;
+		float multiplier;
 		std::ofstream logfile;
 
+		int increaseSampleSize(int current);
 		Run test(Algorithm & alg, std::vector <Coordinate> data, std::string ordering);
 
 		void banner();

@@ -1,7 +1,8 @@
 #include "headers/quickhull.h"
 
 QuickHull::QuickHull() {
-	name = "Quick Hull";
+    name = "Quick Hull";
+    log = "quickhull.csv";
 }
 
 void QuickHull::hull(std::vector<Coordinate> &v) {
@@ -9,8 +10,6 @@ void QuickHull::hull(std::vector<Coordinate> &v) {
     int r = 0;
     unsigned int n = v.size();
 
-
-//<<<<<<< Updated upstream
     for(unsigned int i = 1; i < n; ++i){
         if(v[i].x < v[l].x){
                 l = i;
@@ -31,10 +30,10 @@ void QuickHull::hull(std::vector<Coordinate> &v) {
 
     Coordinate A(v[l].x,v[l].y);
     Coordinate B(v[r].x,v[r].y);
-    
+
     convexHull.push_back(A);
     convexHull.push_back(B);
-    
+
 
     // Tombstone the values
     v[l].x = -123456789;
@@ -78,7 +77,7 @@ void QuickHull::findHull(std::vector<Coordinate> &sk, Coordinate P, Coordinate Q
         convexHull.push_back(sk[loc]);
         sk.erase(sk.begin()+loc);
         std::vector<Coordinate> leftCQ, leftPC;
-       
+
         for (unsigned int i = 0; i < sk.size(); ++i) {
             if(sk[i].x != -123456789){
                 if (location(C,Q,sk[i])==1) {
@@ -88,8 +87,8 @@ void QuickHull::findHull(std::vector<Coordinate> &sk, Coordinate P, Coordinate Q
                 else if (location(P,C,sk[i])==1) {
                   leftPC.push_back(sk[i]);
                   sk[i].x = -123456789; // Tombstone
-                } 
-            }    
+                }
+            }
         }
 
         findHull(leftPC,P,C);
@@ -115,5 +114,3 @@ void QuickHull::clear(){
     convexHull.clear();
     convexHull.reserve(0);
 }
-	//
-//>>>>>>> Stashed changes
