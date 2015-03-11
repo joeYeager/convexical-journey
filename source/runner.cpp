@@ -3,7 +3,7 @@
 Runner::Runner(int min, int max, bool stdlog) {
 
 	bounds = 10000;
-	multiplier = 1.25;  // 125% or 25% increase
+	multiplier = 2.0;  // 200% increase
 	runsCompleted = 0;
 	verbose = stdlog;
 	curSampleSize = min;
@@ -31,12 +31,12 @@ void Runner::start() {
 
 		std::vector <Coordinate> random, homogeneous, sorted, reverse, circular;
 
-		for (int i = 0; i < 10; ++i) {
+		random = data.generateRandom(curSampleSize, bounds);
+		sorted = data.generateSorted(curSampleSize, bounds);
+		reverse = data.generateReverseSorted(curSampleSize, bounds);
+		circular = data.generateCircle(curSampleSize);
 
-			random = data.generateRandom(curSampleSize, bounds);
-			sorted = data.generateSorted(curSampleSize, bounds);
-			reverse = data.generateReverseSorted(curSampleSize, bounds);
-			circular = data.generateCircle(curSampleSize);
+		for (int i = 0; i < 5; ++i) {
 
 			// Quick Hull Algorithm
 			save(test(quickhull, random, "random"));
@@ -57,7 +57,7 @@ void Runner::start() {
 				save(test(bruteforce, random, "random"));
 				save(test(bruteforce, sorted, "sorted"));
 				save(test(bruteforce, reverse, "reverse"));
-				save(test(bruteforce, reverse, "circular"));
+				save(test(bruteforce, circular, "circular"));
 			}
 		}
 
@@ -74,12 +74,7 @@ int Runner::increaseSampleSize(int current) {
 	}
 	else {
 
-		if (current >= 100000) {
-			next = current + 100000;
-		}
-		else {
-			next = current * 2;
-		}
+		next = current * multiplier; // currently doubles
 
 		if (next > maxSampleSize) {
 			next = maxSampleSize; // do one more run at max sample size
